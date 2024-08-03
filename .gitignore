@@ -1,3 +1,9 @@
 .vs
+.vscode
 clase-api-rest-01/bin
 clase-api-rest-01/obj
+clase-api-rest-db-first/bin
+clase-api-rest-db-first
+clase-api-rest-pos/bin
+clase-api-rest-pos/obj
+
