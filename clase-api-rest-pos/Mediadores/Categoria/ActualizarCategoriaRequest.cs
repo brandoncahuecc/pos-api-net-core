@@ -1,10 +1,11 @@
 ﻿using clase_api_rest_pos.Modelos;
+using clase_api_rest_pos.Modelos.Global;
 using clase_api_rest_pos.Servicios;
 using MediatR;
 
 namespace clase_api_rest_pos.Mediadores.Categorias;
 
-public class ActualizarCategoriaRequest : IRequest<Categoria>
+public class ActualizarCategoriaRequest : IRequest<Respuesta<Categoria>>
 {
     public int Id { get; set; }
     public string Nombre { get; set; } = string.Empty;
@@ -12,7 +13,7 @@ public class ActualizarCategoriaRequest : IRequest<Categoria>
     public bool Condicion { get; set; }
 }
 
-public class ActualizarCategoriaHandler : IRequestHandler<ActualizarCategoriaRequest, Categoria>
+public class ActualizarCategoriaHandler : IRequestHandler<ActualizarCategoriaRequest, Respuesta<Categoria>>
 {
     private readonly ICategoriaServicio _servicio;
 
@@ -21,11 +22,11 @@ public class ActualizarCategoriaHandler : IRequestHandler<ActualizarCategoriaReq
         _servicio = servicio;
     }
 
-    public async Task<Categoria> Handle(ActualizarCategoriaRequest request, CancellationToken cancellationToken)
+    public async Task<Respuesta<Categoria>> Handle(ActualizarCategoriaRequest request, CancellationToken cancellationToken)
     {
         Categoria categoria = new()
         {
-            Id = request.Id,
+            IdCategoria = request.Id,
             Nombre = request.Nombre,
             Descripcion = request.Descripcion,
             Condicion = request.Condicion

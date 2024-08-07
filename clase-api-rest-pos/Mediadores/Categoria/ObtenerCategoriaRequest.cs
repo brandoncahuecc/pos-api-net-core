@@ -1,15 +1,16 @@
 ﻿using clase_api_rest_pos.Modelos;
+using clase_api_rest_pos.Modelos.Global;
 using clase_api_rest_pos.Servicios;
 using MediatR;
 
 namespace clase_api_rest_pos.Mediadores.Categorias;
 
-public class ObtenerCategoriaRequest : IRequest<Categoria>
+public class ObtenerCategoriaRequest : IRequest<Respuesta<Categoria>>
 {
     public int Id { get; set; }
 }
 
-public class ObtenerCategoriaHandler : IRequestHandler<ObtenerCategoriaRequest, Categoria>
+public class ObtenerCategoriaHandler : IRequestHandler<ObtenerCategoriaRequest, Respuesta<Categoria>>
 {
     private readonly ICategoriaServicio _servicio;
 
@@ -18,7 +19,7 @@ public class ObtenerCategoriaHandler : IRequestHandler<ObtenerCategoriaRequest, 
         _servicio = servicio;
     }
 
-    public async Task<Categoria> Handle(ObtenerCategoriaRequest request, CancellationToken cancellationToken)
+    public async Task<Respuesta<Categoria>> Handle(ObtenerCategoriaRequest request, CancellationToken cancellationToken)
     {
         var resultado = await _servicio.ObtenerCategoria(request.Id);
         return resultado;

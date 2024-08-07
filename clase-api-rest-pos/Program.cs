@@ -12,15 +12,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//string stringConnection = Environment.GetEnvironmentVariable("StringConnection");
-string stringConnection = "Server=localhost;Database=CursoApi;User Id=SA;Password=Ab123456*;TrustServerCertificate=true";
+string stringConnection = Environment.GetEnvironmentVariable("StringConnection") ?? string.Empty;
+//string stringConnection = "Server=localhost;Database=CursoApi;User Id=SA;Password=Ab123456*;TrustServerCertificate=true";
 
 builder.Services.AddDbContext<PosDbContext>(options =>
 {
     options.UseSqlServer(stringConnection);
 });
 
-builder.Services.AddScoped<ICategoriaServicio, CategoriaServicio>();
+builder.Services.AddStackExchangeRedisCache(options => {
+    string redisConnection = Environment.GetEnvironmentVariable("RedisConnection") ?? string.Empty;
+    options.Configuration = redisConnection;
+});
+
+builder.Services.AddSingleton<ICategoriaPersistencia, CategoriaPersistencia>();
+builder.Services.AddSingleton<ICategoriaServicio, CategoriaServicio>();
 builder.Services.AgregarMediadores();
 
 var app = builder.Build();

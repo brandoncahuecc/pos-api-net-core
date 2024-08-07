@@ -1,14 +1,15 @@
-﻿using clase_api_rest_pos.Servicios;
+﻿using clase_api_rest_pos.Modelos.Global;
+using clase_api_rest_pos.Servicios;
 using MediatR;
 
 namespace clase_api_rest_pos.Mediadores.Categorias;
 
-public class EliminarCategoriaRequest : IRequest<bool>
+public class EliminarCategoriaRequest : IRequest<Respuesta<RespuestaDetalle>>
 {
     public int Id { get; set; }    
 }
 
-public class EliminarCategoriaHandler : IRequestHandler<EliminarCategoriaRequest, bool>
+public class EliminarCategoriaHandler : IRequestHandler<EliminarCategoriaRequest, Respuesta<RespuestaDetalle>>
 {
     private readonly ICategoriaServicio _servicio;
 
@@ -17,7 +18,7 @@ public class EliminarCategoriaHandler : IRequestHandler<EliminarCategoriaRequest
         _servicio = servicio;
     }
 
-    public async Task<bool> Handle(EliminarCategoriaRequest request, CancellationToken cancellationToken)
+    public async Task<Respuesta<RespuestaDetalle>> Handle(EliminarCategoriaRequest request, CancellationToken cancellationToken)
     {
         var resultado = await _servicio.EliminarCategoria(request.Id);
         return resultado;

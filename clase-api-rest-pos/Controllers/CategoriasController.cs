@@ -1,4 +1,5 @@
-﻿using clase_api_rest_pos.Mediadores.Categorias;
+﻿using clase_api_rest_pos.Generales;
+using clase_api_rest_pos.Mediadores.Categorias;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,7 +7,7 @@ namespace clase_api_rest_pos.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CategoriasController : ControllerBase
+public class CategoriasController : UtilidadesController
 {
     private readonly IMediator _mediator;
 
@@ -16,38 +17,39 @@ public class CategoriasController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult ObtenerCategorias()
+    public async Task<IActionResult> ObtenerCategorias()
     {
-        var resultado = _mediator.Send(new ListarCategoriaRequest { });
-        return Ok(resultado.Result);
+        var resultado = await _mediator.Send(new ListarCategoriaRequest { });
+        return Result(resultado);
     }
 
     [HttpGet("{id}")]
-    public IActionResult ObtenerCategoria(int id)
+    public async Task<IActionResult> ObtenerCategoria(int id)
     {
-        var resultado = _mediator.Send(new ObtenerCategoriaRequest { Id = id });
-        return Ok(resultado.Result);
+        var resultado = await _mediator.Send(new ObtenerCategoriaRequest { Id = id });
+        return Result(resultado);
     }
 
     [HttpPost]
-    public IActionResult CrearCategoria(CrearCategoriaRequest request)
+    public async Task<IActionResult> CrearCategoria(CrearCategoriaRequest request)
     {
-        var resultado = _mediator.Send(request);
-        return Ok(resultado.Result);
+        var resultado = await _mediator.Send(request);
+        return Result(resultado);
     }
 
     [HttpPut("{id}")]
-    public IActionResult ActualizarCategoria(int id, ActualizarCategoriaRequest request)
+    public async Task<IActionResult> ActualizarCategoria(int id, ActualizarCategoriaRequest request)
     {
         request.Id = id;
-        var resultado = _mediator.Send(request);
-        return Ok(resultado.Result);
+        var resultado = await _mediator.Send(request);
+        return Result(resultado);
+
     }
 
     [HttpDelete("{id}")]
-    public IActionResult EliminarCategoria(int id)
+    public async Task<IActionResult> EliminarCategoria(int id)
     {
-        var resultado = _mediator.Send(new EliminarCategoriaRequest { Id = id });
-        return Ok(resultado.Result);
+        var resultado = await _mediator.Send(new EliminarCategoriaRequest { Id = id });
+        return Result(resultado);
     }
 }

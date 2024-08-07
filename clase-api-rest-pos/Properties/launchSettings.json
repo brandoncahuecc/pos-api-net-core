@@ -27,7 +27,9 @@
       "applicationUrl": "https://localhost:7120;http://localhost:5120",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "StringConnection": "Server=localhost;Database=CursoApi;User Id=SA;Password=Ab123456*;TrustServerCertificate=true"
+        "StringConnection2": "Server=localhost;Database=CursoApi;User Id=SA;Password=Ab123456*;TrustServerCertificate=true",
+        "StringConnection": "Server=127.0.0.1; Port=3306; Database=dbticel; Uid=bcahuecc; Pwd=Ab123456*;",
+        "RedisConnection": "127.0.0.1:6379"
       }
     },
     "IIS Express": {
