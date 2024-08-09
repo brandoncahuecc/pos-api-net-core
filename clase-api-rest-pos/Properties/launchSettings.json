@@ -28,7 +28,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "StringConnection2": "Server=localhost;Database=CursoApi;User Id=SA;Password=Ab123456*;TrustServerCertificate=true",
-        "StringConnection": "Server=127.0.0.1; Port=3306; Database=dbticel; Uid=bcahuecc; Pwd=Ab123456*;",
+        "StringConnection": "Server=127.0.0.1; Port=3306; Database=dbticel; Uid=bcahuecc; Pwd=Ab123456*; SslMode=none;",
         "RedisConnection": "127.0.0.1:6379"
       }
     },

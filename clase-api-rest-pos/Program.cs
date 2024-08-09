@@ -1,7 +1,9 @@
 using clase_api_rest_pos.Mediadores;
 using clase_api_rest_pos.Persistencia;
 using clase_api_rest_pos.Servicios;
+using Serilog;
 using Microsoft.EntityFrameworkCore;
+using clase_api_rest_pos.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,13 @@ builder.Services.AddDbContext<PosDbContext>(options =>
     options.UseSqlServer(stringConnection);
 });
 
+var loggerConfig = new LoggerConfiguration()
+.ReadFrom.Configuration(new ConfigurationBuilder().AddJsonFile("./Recursos/serilog-config.json").Build())
+.Enrich.FromLogContext().CreateLogger();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(loggerConfig);
+
 builder.Services.AddStackExchangeRedisCache(options => {
     string redisConnection = Environment.GetEnvironmentVariable("RedisConnection") ?? string.Empty;
     options.Configuration = redisConnection;
@@ -31,6 +40,7 @@ builder.Services.AgregarMediadores();
 
 var app = builder.Build();
 
+app.UseMiddleware<LoggerMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
