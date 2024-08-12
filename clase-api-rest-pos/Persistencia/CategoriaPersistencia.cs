@@ -1,6 +1,6 @@
 ﻿using System.Text;
-using clase_api_rest_pos.Modelos;
-using clase_api_rest_pos.Modelos.Global;
+using clase_api_rest_resources.Modelos;
+using clase_api_rest_resources.Modelos.Global;
 using Dapper;
 using MySql.Data.MySqlClient;
 

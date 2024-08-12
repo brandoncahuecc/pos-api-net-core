@@ -1,4 +1,4 @@
-﻿namespace clase_api_rest_pos.Modelos;
+﻿namespace clase_api_rest_resources.Modelos;
 
 public class Categoria
 {

@@ -1,4 +1,4 @@
-﻿using clase_api_rest_pos.Modelos;
+﻿using clase_api_rest_resources.Modelos;
 using Microsoft.EntityFrameworkCore;
 
 namespace clase_api_rest_pos.Persistencia;

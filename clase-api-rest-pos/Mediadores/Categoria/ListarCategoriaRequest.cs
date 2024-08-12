@@ -1,5 +1,5 @@
-﻿using clase_api_rest_pos.Modelos;
-using clase_api_rest_pos.Modelos.Global;
+﻿using clase_api_rest_resources.Modelos;
+using clase_api_rest_resources.Modelos.Global;
 using clase_api_rest_pos.Servicios;
 using MediatR;
 
@@ -23,8 +23,6 @@ public class ListarCategoriaHandler : IRequestHandler<ListarCategoriaRequest, Re
 
     public async Task<Respuesta<List<Categoria>>> Handle(ListarCategoriaRequest request, CancellationToken cancellationToken)
     {
-        int num = 0;
-        var resultadoDiv = 5 / num;
         _logger.LogCritical("Log Critical");
         _logger.LogDebug("Log Debug");
         _logger.LogError("Log Error");

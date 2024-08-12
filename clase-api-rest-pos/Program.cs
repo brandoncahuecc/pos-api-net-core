@@ -1,9 +1,9 @@
-using clase_api_rest_pos.Mediadores;
+using clase_api_rest_resources.Dependencias;
 using clase_api_rest_pos.Persistencia;
 using clase_api_rest_pos.Servicios;
-using Serilog;
 using Microsoft.EntityFrameworkCore;
-using clase_api_rest_pos.Middleware;
+using clase_api_rest_resources.Middleware;
+using clase_api_rest_pos.Mediadores.Categorias;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,21 +22,12 @@ builder.Services.AddDbContext<PosDbContext>(options =>
     options.UseSqlServer(stringConnection);
 });
 
-var loggerConfig = new LoggerConfiguration()
-.ReadFrom.Configuration(new ConfigurationBuilder().AddJsonFile("./Recursos/serilog-config.json").Build())
-.Enrich.FromLogContext().CreateLogger();
-
-builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(loggerConfig);
-
-builder.Services.AddStackExchangeRedisCache(options => {
-    string redisConnection = Environment.GetEnvironmentVariable("RedisConnection") ?? string.Empty;
-    options.Configuration = redisConnection;
-});
+builder.Logging.AgregarLogger();
+builder.Services.AgregarRedisCache();
 
 builder.Services.AddSingleton<ICategoriaPersistencia, CategoriaPersistencia>();
 builder.Services.AddSingleton<ICategoriaServicio, CategoriaServicio>();
-builder.Services.AgregarMediadores();
+builder.Services.AgregarMediador<ListarCategoriaRequest>();
 
 var app = builder.Build();
 

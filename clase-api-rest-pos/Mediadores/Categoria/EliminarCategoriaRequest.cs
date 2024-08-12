@@ -1,4 +1,4 @@
-﻿using clase_api_rest_pos.Modelos.Global;
+﻿using clase_api_rest_resources.Modelos.Global;
 using clase_api_rest_pos.Servicios;
 using MediatR;
 

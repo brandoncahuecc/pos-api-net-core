@@ -1,5 +1,5 @@
-﻿using clase_api_rest_pos.Modelos;
-using clase_api_rest_pos.Modelos.Global;
+﻿using clase_api_rest_resources.Modelos;
+using clase_api_rest_resources.Modelos.Global;
 using clase_api_rest_pos.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;

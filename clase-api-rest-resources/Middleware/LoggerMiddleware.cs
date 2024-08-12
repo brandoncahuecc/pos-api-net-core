@@ -1,8 +1,9 @@
-using System;
-using clase_api_rest_pos.Modelos.Global;
+using clase_api_rest_resources.Modelos.Global;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace clase_api_rest_pos.Middleware;
+namespace clase_api_rest_resources.Middleware;
 
 public class LoggerMiddleware
 {

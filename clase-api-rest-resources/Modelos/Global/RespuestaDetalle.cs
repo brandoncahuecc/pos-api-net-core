@@ -1,4 +1,4 @@
-﻿namespace clase_api_rest_pos.Modelos.Global;
+﻿namespace clase_api_rest_resources.Modelos.Global;
 
 public class RespuestaDetalle
 {

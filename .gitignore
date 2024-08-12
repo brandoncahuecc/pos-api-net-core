@@ -6,4 +6,10 @@ clase-api-rest-db-first/bin
 clase-api-rest-db-first
 clase-api-rest-pos/bin
 clase-api-rest-pos/obj
+clase-api-rest-gateway/bin
+clase-api-rest-gateway/obj
+clase-api-rest-resources/bin
+clase-api-rest-resources/obj
+clase-api-rest-users/bin
+clase-api-rest-users/obj
 logs
